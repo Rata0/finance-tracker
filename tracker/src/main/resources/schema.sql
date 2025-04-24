@@ -22,7 +22,7 @@ CREATE TABLE users (
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     username VARCHAR(30) NOT NULL,
-    created_at DATE DEFAULT CURRENT_DATE
+    created_at DATE NOT NULL
 );
 
 -- Создание таблицы tracks
@@ -72,14 +72,14 @@ CREATE INDEX idx_track_artist ON tracks(artist_id);
 CREATE INDEX idx_track_album ON tracks(album_id);
 CREATE INDEX idx_playlist_user ON playlists(user_id);
 
-CREATE OR REPLACE FUNCTION increment_play_count()
-RETURNS TRIGGER AS $$
-BEGIN
-    UPDATE tracks SET plays_count = plays_count + 1 WHERE id = NEW.track_id;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER tr_play_increment
-AFTER INSERT ON playlist_tracks
-FOR EACH ROW EXECUTE FUNCTION increment_play_count();
+--CREATE OR REPLACE FUNCTION increment_play_count()
+--RETURNS TRIGGER AS $$
+--BEGIN
+--    UPDATE tracks SET plays_count = plays_count + 1 WHERE id = NEW.track_id;
+--    RETURN NEW;
+--END;
+--$$ LANGUAGE plpgsql;
+--
+--CREATE TRIGGER tr_play_increment
+--AFTER INSERT ON playlist_tracks
+--FOR EACH ROW EXECUTE FUNCTION increment_play_count();
