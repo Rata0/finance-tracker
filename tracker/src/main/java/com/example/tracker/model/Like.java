@@ -1,16 +1,14 @@
 package com.example.tracker.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -19,6 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "likes")
 @IdClass(LikeId.class)
+@EntityListeners(AuditingEntityListener.class)
 public class Like {
 
     @Id
@@ -29,6 +28,7 @@ public class Like {
     @Column(name = "track_id")
     private Long trackId;
 
+    @CreatedDate
     @Column(name = "liked_at")
-    private LocalDateTime likedAt;
+    private LocalDate likedAt;
 }

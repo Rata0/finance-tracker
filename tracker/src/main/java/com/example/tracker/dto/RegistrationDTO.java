@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class RegistrationDTO {
-
     @Email
     @NotBlank(message = "Email cannot be empty")
     private String email;
