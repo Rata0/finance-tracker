@@ -77,7 +77,7 @@ public class AuthControllerTest {
                 .andExpect(status().isCreated());
 
         LoginDTO loginDto = new LoginDTO();
-        loginDto.setUsername("79501234567");
+        loginDto.setUsername("rata0");
         loginDto.setPassword("password123");
 
         var result = mockMvc.perform(post(LOGIN_PATH)
